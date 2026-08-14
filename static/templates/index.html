@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Get-it</title>
+  <meta charset="UTF-8">
+  <title>Get-it</title>
+  <link rel="stylesheet" href="static/templates/styles/getit.css">
 </head>
 <body>
   <img src="{{{{ url_for('static', filename='img/logo-getit.png') }}}}">
@@ -16,9 +17,8 @@
     <input type="submit" />
   </form>
 
-<ul>
-{notes}
-</ul>
-
+  <ul>
+  {notes}
+  </ul>
 </body>
 </html>

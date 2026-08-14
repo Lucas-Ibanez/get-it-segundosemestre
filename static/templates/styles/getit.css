@@ -1,0 +1,163 @@
+/* --- Paleta de Cores --- */
+:root {
+    --fundo-pagina: #FFF8F0;      /* Bege claro */
+    --texto-escuro: #4A3B32;      /* Marrom escuro */
+    --laranja-primario: #E67E22;  /* Laranja principal */
+    --laranja-hover: #D35400;     /* Laranja escuro para botões */
+    --fundo-card: #FDEBD0;        /* Laranja/amarelo claro tipo post-it */
+    --borda-card: #F39C12;        /* Borda do post-it */
+    --sombra: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* --- Reset Básico e Estrutura do Body --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--fundo-pagina);
+    color: var(--texto-escuro);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px;
+    min-height: 100vh;
+}
+
+/* --- Logo e Subtítulo --- */
+body > img {
+    max-width: 180px;
+    height: auto;
+    margin-bottom: 8px;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.1));
+}
+
+body > p {
+    font-size: 1.1rem;
+    color: #8D6E63;
+    font-style: italic;
+    margin-bottom: 30px;
+}
+
+/* --- Formulário (Fica no Topo) --- */
+form {
+    background-color: #FFFFFF;
+    width: 100%;
+    max-width: 480px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: var(--sombra);
+    margin-bottom: 40px;
+    border-top: 5px solid var(--laranja-primario);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Rótulos (Título / Detalhes) */
+form label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: -4px;
+}
+
+/* Campos de texto do Formulário */
+form input[type="text"],
+form input:not([type="submit"]) {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #D7CCC8;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #FAFAFA;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+form input[type="text"]:focus,
+form input:not([type="submit"]):focus {
+    outline: none;
+    border-color: var(--laranja-primario);
+    box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.2);
+    background-color: #FFFFFF;
+}
+
+/* Botão Enviar */
+form input[type="submit"] {
+    background-color: var(--laranja-primario);
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 1.05rem;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+form input[type="submit"]:hover {
+    background-color: var(--laranja-hover);
+}
+
+form input[type="submit"]:active {
+    transform: scale(0.98);
+}
+
+/* --- Lista de Anotações (Cards em Baixo) --- */
+ul {
+    list-style-type: none;
+    width: 100%;
+    max-width: 1000px;
+    display: grid;
+    /* Organiza automaticamente os cards em colunas */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* Estilo para cada Card/Item da Lista `{notes}` */
+ul li {
+    background-color: var(--fundo-card);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--sombra);
+    border-left: 6px solid var(--borda-card);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Efeito suave de degradê estilo papel */
+    background-image: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 100%);
+}
+
+ul li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Caso as notas geradas no backend usem títulos/parágrafos ou texto puro */
+ul li h3, ul li strong, ul li b {
+    color: #873600;
+    font-size: 1.2rem;
+    border-bottom: 1px solid rgba(135, 54, 0, 0.15);
+    padding-bottom: 6px;
+}
+
+ul li p, ul li span {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #5D4037;
+    word-break: break-word;
+}
+
+/* Ajustes para telas de celular */
+@media (max-width: 600px) {
+    body {
+        padding: 15px;
+    }
+    ul {
+        grid-template-columns: 1fr;
+    }
+}
