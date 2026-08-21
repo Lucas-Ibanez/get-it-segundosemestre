@@ -1,19 +1,14 @@
-from utils import load_data, load_template
-import json
+from utils import obter_notas, load_template, adicionar_nota
 
 def index():
     note_template = load_template('components/note.html')
-    notes_li = [
-        note_template.format(title=dados['titulo'], details=dados['detalhes'])
-        for dados in load_data('notes.json')
-    ]
-    notes = '\n'.join(notes_li)
+    notas = obter_notas()
+
+    notes_list = [note_template.format(title=dados[1], details=dados[2]) for dados in notas]
+
+    notes = '\n'.join(notes_list)
 
     return load_template('index.html').format(notes=notes)
 
 def submit(titulo, detalhes):
-    json_conteudo = list(load_data('notes.json'))
-    json_conteudo.append({'titulo': titulo, 'detalhes': detalhes})
-
-    with open("static/data/notes.json", "w") as arquivo_json:
-        json.dump(json_conteudo, arquivo_json)
+    adicionar_nota(titulo, detalhes)

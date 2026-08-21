@@ -1,6 +1,8 @@
 from flask import Flask, render_template_string, request, redirect
 import views
+import utils
 
+utils.iniciar_db()
 
 app = Flask(__name__)
 
@@ -9,7 +11,6 @@ app.static_folder = 'static'
 
 @app.route('/')
 def index():
-
     return render_template_string(views.index())
 
 @app.route('/submit', methods=['POST'])
