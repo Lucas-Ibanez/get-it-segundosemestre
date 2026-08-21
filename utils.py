@@ -29,6 +29,24 @@ def obter_notas():
     # Retornar conteúdo de notas
     return notas
 
+def pegar_nota(nota_id):
+    # Abrir conexão
+    conexao = sqlite3.connect("banco.db")
+    cursor = conexao.cursor()
+    
+    # Executar comando SLQ e transformar conteúdo em uma lista de tuplas
+    cursor.execute("SELECT * FROM note WHERE id = ?", (nota_id,))
+    nota = cursor.fetchall()
+    titulo = nota[0][1]
+    conteudo = nota[0][2]
+    identfy = nota[0][0]
+    
+    # Fechar conexão
+    conexao.close()
+    
+    # Retornar conteúdo de notas
+    return (titulo, conteudo, identfy)
+
 def adicionar_nota(titulo, detalhes):
     # Abrir conexão
     conexao = sqlite3.connect("banco.db")
@@ -62,3 +80,17 @@ def load_template(nome_template):
         conteudo_arquivo = arquivo_template.read()
 
     return conteudo_arquivo
+
+def edit(nota_id, titulo, conteudo):
+    # Abrir conexão
+    conexao = sqlite3.connect("banco.db")
+    cursor = conexao.cursor()
+            
+    # Executar comando SLQ e salvar novas notas
+    cursor.execute("UPDATE note SET title = ?, content = ? WHERE id = ?", (titulo, conteudo, nota_id))
+        
+    # Commitar mudanças
+    conexao.commit()
+        
+    # Fechar conexão
+    conexao.close()

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>  
+    <form action="/updatefact/{idd}" method="POST">
+        <label for="titulo">Titulo</label>
+        <input id="titulo" type="text" name="titulo" value="{titulo_nota}" />
+        <label for="detalhes">Detalhes</label>
+        <input id="detalhes" name="detalhes" value="{conteudo_nota}" />
+        <input type="submit" value="Salvar" />
+    </form>
+    <form action="/">
+        <input type="submit" value="Cancelar">
+    </form>
+</body>
+</html>
