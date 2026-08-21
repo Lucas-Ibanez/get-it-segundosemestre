@@ -43,6 +43,20 @@ def adicionar_nota(titulo, detalhes):
     # Fechar conexão
     conexao.close()
 
+def deletar_nota(nota_id):
+    # Abrir conexão
+    conexao = sqlite3.connect("banco.db")
+    cursor = conexao.cursor()
+        
+    # Executar comando SLQ e salvar novas notas
+    cursor.execute("DELETE FROM note WHERE id = ?", (nota_id,))
+    
+    # Commitar mudanças
+    conexao.commit()
+    
+    # Fechar conexão
+    conexao.close()
+
 def load_template(nome_template):
     with open(f"static/templates/{nome_template}", "r") as arquivo_template:
         conteudo_arquivo = arquivo_template.read()
